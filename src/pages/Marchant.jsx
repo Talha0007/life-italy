@@ -87,6 +87,26 @@ const tilesData = [
     tags: ["Bad and breakfast", "Beb"],
     isActive: true,
   },
+  {
+    image:
+      "https://images.unsplash.com/photo-1484807352052-23338990c6c6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8b25saW5lfGVufDB8fDB8fHww",
+    title: "Stella del Mare Restaurant",
+    description:
+      "La Pescheria Stella del Mare nasce più di 100 anni fa dalla creatività e dalla passione per la pe...",
+    location: "Corso Principe di Piemonte, 1... Galatina",
+    tags: ["Fish", "Food", "Mare", "+5"],
+    isActive: true,
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1484807352052-23338990c6c6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8b25saW5lfGVufDB8fDB8fHww",
+    title: "Stella del Mare Restaurant",
+    description:
+      "La Pescheria Stella del Mare nasce più di 100 anni fa dalla creatività e dalla passione per la pe...",
+    location: "Corso Principe di Piemonte, 1... Galatina",
+    tags: ["Fish", "Food", "Mare", "+5"],
+    isActive: true,
+  },
 ];
 
 export default function Dashboard() {
@@ -173,12 +193,19 @@ export default function Dashboard() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "stretch",
+                padding: "10px",
               }}
             >
               {tilesData.map((tile, index) => (
                 <Card
                   key={index}
-                  sx={{ display: "flex", alignItems: "center", mb: 2 }}
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    mb: 2,
+                    padding: "6px",
+                    backgroundColor: index % 2 === 0 ? "white" : "#E1F5F6",
+                  }}
                 >
                   <CardMedia
                     component="img"
@@ -194,7 +221,11 @@ export default function Dashboard() {
                     }}
                   >
                     <CardContent sx={{ flex: "1 0 auto" }}>
-                      <Typography component="div" variant="h5">
+                      <Typography
+                        component="div"
+                        variant="h6"
+                        sx={{ fontWeight: "bold" }}
+                      >
                         {tile.title}
                       </Typography>
                       <Typography
@@ -235,14 +266,34 @@ export default function Dashboard() {
                         alignItems: "center",
                         pl: 1,
                         pb: 1,
+                        marginRight: "10px",
                       }}
                     >
-                      <IconButton aria-label="view">
-                        <VisibilityIcon />
-                      </IconButton>
-                      <IconButton aria-label="delete">
-                        <DeleteIcon />
-                      </IconButton>
+                      <Box
+                        sx={{
+                          width: "40px",
+                          height: "40px",
+                          backgroundColor: "#09AEB3",
+                          marginRight: "8px",
+                          borderRadius: "20%",
+                        }}
+                      >
+                        <IconButton aria-label="view">
+                          <VisibilityIcon sx={{ color: "white" }} />
+                        </IconButton>
+                      </Box>
+                      <Box
+                        sx={{
+                          width: "40px",
+                          height: "40px",
+                          backgroundColor: "#D32F2F",
+                          borderRadius: "20%",
+                        }}
+                      >
+                        <IconButton aria-label="delete">
+                          <DeleteIcon sx={{ color: "white" }} />
+                        </IconButton>
+                      </Box>
                     </Box>
                   </Box>
                 </Card>
