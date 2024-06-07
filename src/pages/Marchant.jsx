@@ -1,26 +1,18 @@
 import * as React from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import MuiDrawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
-import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import Badge from "@mui/material/Badge";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
 import Link from "@mui/material/Link";
-import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import HomeIcon from "@mui/icons-material/Home";
 
 import Navbar from "./components/Navbar";
 import MerchantForm from "./components/MerchantForm";
+
+import IconButton from "@mui/material/IconButton";
 
 import {
   Chip,
@@ -52,9 +44,6 @@ function Copyright(props) {
   );
 }
 
-const drawerWidth = 240;
-
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 const tilesData = [
@@ -112,6 +101,7 @@ const tilesData = [
 export default function Dashboard() {
   const [open, setOpen] = React.useState(true);
   const [dialogOpen, setDialogOpen] = React.useState(false);
+  const [searchQuery, setSearchQuery] = React.useState("");
 
   const toggleDrawer = () => {
     setOpen(!open);
@@ -124,6 +114,18 @@ export default function Dashboard() {
   const handleDialogClose = () => {
     setDialogOpen(false);
   };
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const filteredTiles = tilesData.filter((tile) => {
+    return (
+      tile.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      tile.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      tile.location.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  });
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -166,6 +168,8 @@ export default function Dashboard() {
                     label="Search"
                     variant="outlined"
                     placeholder="Search merchants..."
+                    value={searchQuery}
+                    onChange={handleSearchChange}
                   />
                 </Grid>
                 <Grid
@@ -196,7 +200,7 @@ export default function Dashboard() {
                 padding: "10px",
               }}
             >
-              {tilesData.map((tile, index) => (
+              {filteredTiles.map((tile, index) => (
                 <Card
                   key={index}
                   sx={{

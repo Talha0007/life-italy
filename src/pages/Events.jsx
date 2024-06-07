@@ -1,25 +1,13 @@
 import * as React from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import MuiDrawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
-import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import Badge from "@mui/material/Badge";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-
-import HomeIcon from "@mui/icons-material/Home";
-import { mainListItems, secondaryListItems } from "./components/Listitems";
-
-import Navbar from "./components/Navbar";
-
+import IconButton from "@mui/material/IconButton";
 import {
   Chip,
   Card,
@@ -31,6 +19,10 @@ import {
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
+import HomeIcon from "@mui/icons-material/Home";
+import Navbar from "./components/Navbar";
+import EventForm from "./components/EventForm";
+import { mainListItems, secondaryListItems } from "./components/Listitems";
 
 function Copyright(props) {
   return (
@@ -51,8 +43,6 @@ function Copyright(props) {
 }
 
 const drawerWidth = 240;
-
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 const tilesData = [
@@ -89,18 +79,34 @@ const tilesData = [
 
 export default function Dashboard() {
   const [open, setOpen] = React.useState(true);
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+  const [searchQuery, setSearchQuery] = React.useState("");
+
   const toggleDrawer = () => {
     setOpen(!open);
   };
 
-  const handleAddMerchant = () => {};
+  const handleAddEvent = () => {
+    setDialogOpen(true);
+  };
+
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+  };
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const filteredTiles = tilesData.filter((tile) =>
+    tile.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <ThemeProvider theme={defaultTheme}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <Navbar />
-
         <Box
           component="main"
           sx={{
@@ -117,13 +123,11 @@ export default function Dashboard() {
           <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
             <Box sx={{ flexGrow: 1, p: 2 }}>
               <Typography
-                // variant="h5"
                 sx={{
                   display: "flex",
                   alignItems: "center",
                   fontSize: "24px",
                   fontWeight: "700",
-                  // color: "darkgray  ",
                 }}
                 gutterBottom
               >
@@ -137,6 +141,8 @@ export default function Dashboard() {
                     label="Search"
                     variant="outlined"
                     placeholder="Search merchants..."
+                    value={searchQuery}
+                    onChange={handleSearchChange}
                   />
                 </Grid>
                 <Grid
@@ -149,9 +155,8 @@ export default function Dashboard() {
                 >
                   <Button
                     variant="contained"
-                    // color="primary"
                     startIcon={<AddIcon />}
-                    onClick={handleAddMerchant}
+                    onClick={handleAddEvent}
                     sx={{ backgroundColor: "#09AEB3" }}
                   >
                     Add Event
@@ -166,7 +171,7 @@ export default function Dashboard() {
                 alignItems: "stretch",
               }}
             >
-              {tilesData.map((tile, index) => (
+              {filteredTiles.map((tile, index) => (
                 <Card
                   key={index}
                   sx={{ display: "flex", alignItems: "center", mb: 2 }}
@@ -177,13 +182,7 @@ export default function Dashboard() {
                     image={tile.image}
                     alt={tile.title}
                   />
-                  <Box
-                    sx={{
-                      display: "flex",
-                      //   flexDirection: "column",
-                      flexGrow: 1,
-                    }}
-                  >
+                  <Box sx={{ display: "flex", flexGrow: 1 }}>
                     <CardContent sx={{ flex: "1 0 auto" }}>
                       <Typography component="div" variant="h5">
                         {tile.title}
@@ -226,24 +225,44 @@ export default function Dashboard() {
                         alignItems: "center",
                         pl: 1,
                         pb: 1,
+                        marginRight: "10px",
                       }}
                     >
-                      <IconButton aria-label="view">
-                        <VisibilityIcon />
-                      </IconButton>
-                      <IconButton aria-label="delete">
-                        <DeleteIcon />
-                      </IconButton>
+                      <Box
+                        sx={{
+                          width: "40px",
+                          height: "40px",
+                          backgroundColor: "#09AEB3",
+                          marginRight: "8px",
+                          borderRadius: "20%",
+                        }}
+                      >
+                        <IconButton aria-label="view">
+                          <VisibilityIcon sx={{ color: "white" }} />
+                        </IconButton>
+                      </Box>
+                      <Box
+                        sx={{
+                          width: "40px",
+                          height: "40px",
+                          backgroundColor: "#D32F2F",
+                          borderRadius: "20%",
+                        }}
+                      >
+                        <IconButton aria-label="delete">
+                          <DeleteIcon sx={{ color: "white" }} />
+                        </IconButton>
+                      </Box>
                     </Box>
                   </Box>
                 </Card>
               ))}
             </Box>
-
             <Copyright sx={{ pt: 4 }} />
           </Container>
         </Box>
       </Box>
+      <EventForm open={dialogOpen} handleClose={handleDialogClose} />
     </ThemeProvider>
   );
 }

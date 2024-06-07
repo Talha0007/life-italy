@@ -71,22 +71,40 @@ export const mainListItems = (
     </ListSubheader>
 
     <ListItemButton>
-      <ListItemIcon>
-        <CategoryIcon />
-      </ListItemIcon>
-      <ListItemText primary="Categories" />
+      <Link
+        to={"/categories"}
+        style={{ textDecoration: "none", display: "flex", color: "black" }}
+      >
+        <ListItemIcon>
+          <CategoryIcon />
+        </ListItemIcon>
+        <ListItemText primary="Categories" />
+      </Link>
     </ListItemButton>
+
     <ListItemButton>
-      <ListItemIcon>
-        <ClassIcon />
-      </ListItemIcon>
-      <ListItemText primary="Special Categories" />
+      <Link
+        to={"/scategories"}
+        style={{ textDecoration: "none", display: "flex", color: "black" }}
+      >
+        <ListItemIcon>
+          <ClassIcon />
+        </ListItemIcon>
+
+        <ListItemText primary="Special Categories" />
+      </Link>
     </ListItemButton>
+
     <ListItemButton>
-      <ListItemIcon>
-        <LocalActivityIcon />
-      </ListItemIcon>
-      <ListItemText primary="Tipologie Coupon" />
+      <Link
+        to={"/coupons"}
+        style={{ textDecoration: "none", display: "flex", color: "black" }}
+      >
+        <ListItemIcon>
+          <LocalActivityIcon />
+        </ListItemIcon>
+        <ListItemText primary="Tipologie Coupon" />
+      </Link>
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
