@@ -8,6 +8,7 @@ import Marchant from "./pages/Marchant";
 import Events from "./pages/Events";
 import Categories from "./pages/management/Categories";
 import SpecialCategories from "./pages/management/SpecialCategory";
+import Coupons from "./pages/management/Coupon";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -20,6 +21,7 @@ function App() {
         <Route path="/events" element={<Events />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/scategories" element={<SpecialCategories />} />
+        <Route path="/coupons" element={<Coupons />} />
       </Routes>
     </>
   );

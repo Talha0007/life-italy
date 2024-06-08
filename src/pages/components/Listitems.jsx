@@ -25,6 +25,7 @@ import GroupIcon from "@mui/icons-material/Group";
 import MarkChatUnreadIcon from "@mui/icons-material/MarkChatUnread";
 import MessageIcon from "@mui/icons-material/Message";
 import AnalyticsIcon from "@mui/icons-material/Analytics";
+import SettingsIcon from "@mui/icons-material/Settings";
 
 export const mainListItems = (
   <React.Fragment>
@@ -112,31 +113,6 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Credit Packages" />
     </ListItemButton>
-
-    {/* <ListItemButton>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Orders" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Customers" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Reports" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Integrations" />
-    </ListItemButton> */}
   </React.Fragment>
 );
 
@@ -169,11 +145,29 @@ export const secondaryListItems = (
       </ListItemIcon>
       <ListItemText primary="Messages" />
     </ListItemButton>
+
     <ListItemButton>
-      <ListItemIcon>
-        <AnalyticsIcon />
-      </ListItemIcon>
-      <ListItemText primary="Report" />
+      <Link
+        to={"/"}
+        style={{ textDecoration: "none", display: "flex", color: "black" }}
+      >
+        <ListItemIcon>
+          <AnalyticsIcon />
+        </ListItemIcon>
+        <ListItemText primary="Report" />
+      </Link>
+    </ListItemButton>
+
+    <ListItemButton>
+      <Link
+        to={"/"}
+        style={{ textDecoration: "none", display: "flex", color: "black" }}
+      >
+        <ListItemIcon>
+          <SettingsIcon />
+        </ListItemIcon>
+        <ListItemText primary="Settings" />
+      </Link>
     </ListItemButton>
   </React.Fragment>
 );

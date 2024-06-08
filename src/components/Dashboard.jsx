@@ -14,17 +14,16 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Link from "@mui/material/Link";
-import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import {
-  mainListItems,
-  secondaryListItems,
-} from "../pages/components/Listitems.jsx";
+
 import Chart from "./Chart";
 import Deposits from "./Deposite";
 import Orders from "./Orders.jsx";
 import Navbar from "../pages/components/Navbar.jsx";
+
+import BarChart from "../pages/graphs/BarChart.jsx";
+import BarChart1 from "../pages/graphs/BarChart1.jsx";
+import PieChart from "../pages/graphs/PieChart.jsx";
+import PieChart1 from "../pages/graphs/PieChart1.jsx";
 
 function Copyright(props) {
   return (
@@ -100,7 +99,7 @@ export default function Dashboard() {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+          <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
               {/* Chart */}
               <Grid item xs={12} md={8} lg={9}>
@@ -129,9 +128,29 @@ export default function Dashboard() {
                 </Paper>
               </Grid>
               {/* Recent Orders */}
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
                   <Orders />
+                </Paper>
+              </Grid> */}
+              <Grid item xs={6}>
+                <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+                  <BarChart />
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+                  <BarChart1 />
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+                  <PieChart />
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+                  <PieChart1 />
                 </Paper>
               </Grid>
             </Grid>
