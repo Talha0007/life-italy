@@ -108,10 +108,15 @@ export const mainListItems = (
       </Link>
     </ListItemButton>
     <ListItemButton>
-      <ListItemIcon>
-        <CreditCardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Credit Packages" />
+      <Link
+        to={"/creditpackages"}
+        style={{ textDecoration: "none", display: "flex", color: "black" }}
+      >
+        <ListItemIcon>
+          <CreditCardIcon />
+        </ListItemIcon>
+        <ListItemText primary="Credit Packages" />
+      </Link>
     </ListItemButton>
   </React.Fragment>
 );
@@ -122,16 +127,26 @@ export const secondaryListItems = (
       ADMINISTRATION
     </ListSubheader>
     <ListItemButton>
-      <ListItemIcon>
-        <AdminPanelSettingsIcon />
-      </ListItemIcon>
-      <ListItemText primary="Admin Users" />
+      <Link
+        to={"/admins"}
+        style={{ textDecoration: "none", display: "flex", color: "black" }}
+      >
+        <ListItemIcon>
+          <AdminPanelSettingsIcon />
+        </ListItemIcon>
+        <ListItemText primary="Admin Users" />
+      </Link>
     </ListItemButton>
     <ListItemButton>
-      <ListItemIcon>
-        <GroupIcon />
-      </ListItemIcon>
-      <ListItemText primary="App Users" />
+      <Link
+        to={"/appusers"}
+        style={{ textDecoration: "none", display: "flex", color: "black" }}
+      >
+        <ListItemIcon>
+          <GroupIcon />
+        </ListItemIcon>
+        <ListItemText primary="App Users" />
+      </Link>
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>

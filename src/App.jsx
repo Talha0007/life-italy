@@ -9,6 +9,9 @@ import Events from "./pages/Events";
 import Categories from "./pages/management/Categories";
 import SpecialCategories from "./pages/management/SpecialCategory";
 import Coupons from "./pages/management/Coupon";
+import CrediePackages from "./pages/management/CrediePackages";
+import AdminUser from "./pages/Administations/AdminUser";
+import AppUser from "./pages/Administations/AppUser";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -22,6 +25,9 @@ function App() {
         <Route path="/categories" element={<Categories />} />
         <Route path="/scategories" element={<SpecialCategories />} />
         <Route path="/coupons" element={<Coupons />} />
+        <Route path="/creditpackages" element={<CrediePackages />} />
+        <Route path="/admins" element={<AdminUser />} />
+        <Route path="/appusers" element={<AppUser />} />
       </Routes>
     </>
   );
